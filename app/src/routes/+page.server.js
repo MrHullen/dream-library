@@ -1,10 +1,22 @@
 import client from '$lib/sanityClient'
 
 export async function load({ params }) {
-  const library = await client.fetch(`*[_type == 'collection']{
-      ...,
-      books[]->
-    }`)
+  const collections = await client.fetch(`*[_type == 'collection']{
+    ...,
+    books[]->
+  }`)
+
+  const singleBooks = await client.fetch(`*[ _type == 'book']{
+    ...,
+    "refs": count(*[ references(^._id) ])
+  }[ refs == 0 ]`)
+
+  const rawLibrary = [...collections, ...singleBooks]
+
+  let library = rawLibrary
+  .map(value => ({ value, sort: Math.random() }))
+  .sort((a, b) => a.sort - b.sort)
+  .map(({ value }) => value)
 
   console.dir(library)
 

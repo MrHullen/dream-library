@@ -5,17 +5,17 @@
 </script>
 
 <main>
-  {#each data.library as collection}
-    <Bookshelf books={collection.books} />
+  {#each data.library as shelf}
+    <Bookshelf {shelf} />
   {/each}
 </main>
 
 <style>
   main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: top;
+    align-items: end;
     gap: 100px;
     max-height: 100vh;
   }

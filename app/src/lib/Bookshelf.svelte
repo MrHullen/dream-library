@@ -2,17 +2,23 @@
   import Book from './Book.svelte'
   import Shelf from './Shelf.svelte'
 
-  export let books;
+  export let shelf
 </script>
 
-<section style="width: {books.length * 220}px;">
+<section style="width: {shelf.books ? shelf.books.length * 220 : 220}px;">
   <article>
-    {#each books as book}
-      <Book {book} />
-    {/each}
+    {#if shelf.books}
+      {#each shelf.books as book}
+        <Book {book} />
+      {/each}
+    {:else if !shelf.books}
+      <Book book={shelf} />
+    {:else}
+      <p>No books found</p>
+    {/if}
   </article>
   
-  <Shelf size={books.length} />
+  <Shelf />
 </section>
 
 <style>

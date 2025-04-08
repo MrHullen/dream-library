@@ -11,7 +11,6 @@
 <style>
   figure, img {
     width: 150px;
-    min-height: 200px;
     margin-bottom: 0;
     padding-bottom: 0;
   }
@@ -19,7 +18,7 @@
   figure {
     display: flex;
     justify-content: center;
-    align-items: bottom;
+    align-items: end;
     position: relative;
   }
 

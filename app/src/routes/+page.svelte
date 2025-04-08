@@ -15,7 +15,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: end;
+    align-items: flex-end;
+    justify-content: flex-start;
     gap: 100px;
     max-height: 100vh;
   }
